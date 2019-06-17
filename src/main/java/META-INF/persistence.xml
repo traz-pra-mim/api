@@ -9,6 +9,10 @@
 	    <class>online.trazpramim.domain.State</class>
 	    <class>online.trazpramim.domain.Country</class>
 	    <class>online.trazpramim.domain.User</class>
+	    <class>online.trazpramim.domain.Offer</class>
+	    <class>online.trazpramim.domain.OfferDetails</class>
+	    <class>online.trazpramim.domain.OfferType</class>
+	    <class>online.trazpramim.domain.Interested</class>
 	  	<properties>
 			<property name="javax.persistence.schema-generation.database.action"
 		    	value="none" />

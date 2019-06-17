@@ -22,13 +22,23 @@ public class User implements Serializable {
 	@Column
 	private String name;
 	@Column
-	private String lastName;
+	private String last_name;
 	@Column
 	private Date birthday;
 	@Column
 	private String cpf;
 	@Column
+	private String phone;
+	@Column
 	private Long address_id;
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 	
 	public Integer getId() {
 		return id;
@@ -43,10 +53,10 @@ public class User implements Serializable {
 		this.name = name;
 	}
 	public String getLastName() {
-		return lastName;
+		return last_name;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastName(String last_name) {
+		this.last_name = last_name;
 	}
 	public Date getBirthday() {
 		return birthday;

@@ -1,5 +1,7 @@
 package online.trazpramim.resource;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -24,7 +26,7 @@ public class UserResource {
 		la.setName("Igor");
 			
 		
-		User data = userService.findAll();
+		List<User> data = userService.findAll();
 		
 		//data.add(la);
 		
