@@ -1,0 +1,8 @@
+/home/igor/Workspace/web2/api/src/main/java/online/trazpramim/domain/Address.java
+/home/igor/Workspace/web2/api/src/main/java/online/trazpramim/service/UserService.java
+/home/igor/Workspace/web2/api/src/main/java/online/trazpramim/domain/Country.java
+/home/igor/Workspace/web2/api/src/main/java/online/trazpramim/dao/UserDao.java
+/home/igor/Workspace/web2/api/src/main/java/online/trazpramim/domain/User.java
+/home/igor/Workspace/web2/api/src/main/java/online/trazpramim/domain/State.java
+/home/igor/Workspace/web2/api/src/main/java/online/trazpramim/resource/UserResource.java
+/home/igor/Workspace/web2/api/src/main/java/JAXRSConfiguration.java
