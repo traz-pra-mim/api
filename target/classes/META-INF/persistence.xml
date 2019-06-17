@@ -4,7 +4,7 @@
  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="TestDataSource">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-	  	<jta-data-source>java:jboss/mariadb</jta-data-source>
+	  	<jta-data-source>java:jboss/local</jta-data-source>
 	 	<class>online.trazpramim.domain.Address</class>
 	    <class>online.trazpramim.domain.State</class>
 	    <class>online.trazpramim.domain.Country</class>

@@ -1,12 +1,15 @@
 package online.trazpramim.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class OfferDetails implements Serializable {
@@ -21,6 +24,12 @@ public class OfferDetails implements Serializable {
 	private Double max_weight;
 	@Column
 	private Double max_price;
+	@Column
+	@DateTimeFormat(pattern = "Y-m-d")
+	private Date departure_day;
+	@Column
+	@DateTimeFormat(pattern = "Y-m-d")
+	private Date arrival_day;
 	
 	public Integer getId() {
 		return id;
@@ -40,5 +49,18 @@ public class OfferDetails implements Serializable {
 	public void setMax_price(Double max_price) {
 		this.max_price = max_price;
 	}
+	public Date getDeparture_day() {
+		return departure_day;
+	}
+	public void setDeparture_day(Date departure_day) {
+		this.departure_day = departure_day;
+	}
+	public Date getArrival_day() {
+		return arrival_day;
+	}
+	public void setArrival_day(Date arrival_day) {
+		this.arrival_day = arrival_day;
+	}
+	
 		
 }

@@ -31,15 +31,10 @@ public class User implements Serializable {
 	private String phone;
 	@Column
 	private Long address_id;
+	@Column
+	private String token;
 	
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	
+		
 	public Integer getId() {
 		return id;
 	}
@@ -51,12 +46,6 @@ public class User implements Serializable {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getLastName() {
-		return last_name;
-	}
-	public void setLastName(String last_name) {
-		this.last_name = last_name;
 	}
 	public Date getBirthday() {
 		return birthday;
@@ -70,12 +59,32 @@ public class User implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 	public Long getAddress_id() {
 		return address_id;
 	}
 	public void setAddress_id(Long address_id) {
 		this.address_id = address_id;
 	}
+	public String getLast_name() {
+		return last_name;
+	}
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
 	
 	
 }
