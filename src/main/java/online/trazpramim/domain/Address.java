@@ -33,6 +33,9 @@ public class Address implements Serializable {
 	private String postal_code; 
 	
 	@Column
+	private String city;
+	
+	@Column
 	private Integer state_id;
 
 	public Integer getId() {
@@ -81,6 +84,14 @@ public class Address implements Serializable {
 
 	public void setState_id(Integer state_id) {
 		this.state_id = state_id;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	

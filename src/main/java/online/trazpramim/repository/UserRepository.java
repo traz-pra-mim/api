@@ -25,14 +25,25 @@ public class UserRepository {
 	    
 	}
 	
-	/*public User getNowUser(String token) {
+	public User getNowUser(String token) throws Exception {
 
-		Query query = em.createQuery("from User where token = :token ");
-		query.setParameter("token", token);
+		if (token.length() <= 0 || token == null) {
+			throw new Exception("Token inválido.");
+		}
 		
-		return (User) query.getSingleResult();
+		return (User) em.createQuery("SELECT u FROM User u WHERE u.token = :token")
+				.setParameter("token", token)
+				.getSingleResult();
 		
-	}*/
+	}
+	
+	public boolean saveUser(User user) {
+		
+		em.persist(user);
+				
+		return true;
+		
+	}
 	
 	
 }

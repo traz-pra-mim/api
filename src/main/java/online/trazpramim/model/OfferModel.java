@@ -10,10 +10,16 @@ public class OfferModel {
 	private Double price;
 	private Double weight;
 	private String neighborhood;
+	private String city;
 	private String state;
 	private String country;
 	private String type;
-	private String userToken;
+	private String token;
+	private String departure;
+	private String arrival;
+	
+	
+	public OfferModel() {}
 	
 	public OfferModel(Offer offer) {
 		this.title = offer.getTitle();
@@ -75,11 +81,38 @@ public class OfferModel {
 		this.type = type;
 	}
 
-	public String getUserToken() {
-		return userToken;
+	public String getToken() {
+		return token;
 	}
 
-	public void setUserToken(String userToken) {
-		this.userToken = userToken;
+	public void setToken(String token) {
+		this.token = token;
 	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getDeparture() {
+		return departure;
+	}
+
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
+
+	public String getArrival() {
+		return arrival;
+	}
+
+	public void setArrival(String arrival) {
+		this.arrival = arrival;
+	}
+
+	
+	
 }

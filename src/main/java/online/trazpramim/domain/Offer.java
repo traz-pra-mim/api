@@ -32,6 +32,10 @@ public class Offer implements Serializable{
 	private Integer offer_details_id;
 	@Column
 	private Integer offer_type_id;
+	@Column
+	private Integer user_id;
+	@Column
+	private Boolean activated = true;
 	
 	public Integer getId() {
 		return id;
@@ -81,7 +85,17 @@ public class Offer implements Serializable{
 	public void setOffer_type_id(Integer offer_type_id) {
 		this.offer_type_id = offer_type_id;
 	}
-	
-	
+	public Boolean getActivated() {
+		return activated;
+	}
+	public void setActivated(Boolean activated) {
+		this.activated = activated;
+	}
+	public Integer getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
+	}	
 	
 }

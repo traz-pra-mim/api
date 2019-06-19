@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "cpf", "token" }))
 public class User implements Serializable {
 
 	
@@ -28,9 +31,13 @@ public class User implements Serializable {
 	@Column
 	private String cpf;
 	@Column
+	private String email;
+	@Column
+	private String password;
+	@Column
 	private String phone;
 	@Column
-	private Long address_id;
+	private Integer address_id;
 	@Column
 	private String token;
 	
@@ -66,10 +73,10 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 	
-	public Long getAddress_id() {
+	public Integer getAddress_id() {
 		return address_id;
 	}
-	public void setAddress_id(Long address_id) {
+	public void setAddress_id(Integer address_id) {
 		this.address_id = address_id;
 	}
 	public String getLast_name() {
@@ -84,7 +91,17 @@ public class User implements Serializable {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 }

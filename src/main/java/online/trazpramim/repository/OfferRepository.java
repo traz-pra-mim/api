@@ -18,15 +18,23 @@ public class OfferRepository {
 	@PersistenceContext
 	EntityManager em;
 	
-	public boolean save(Offer offer) {
+	public boolean saveOffer(Offer offer) {
 		
 		em.persist(offer);
-		
+				
 		return true;
 		
 	}
 	
-	public List<Offer> findAll() {
+	public boolean saveOfferDetails(OfferDetails offerDetails) {
+		
+		em.persist(offerDetails);
+				
+		return true;
+		
+	}
+	
+	public List<Offer> findAllOffer() {
 				
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 	    CriteriaQuery<Offer> query = builder.createQuery(Offer.class);
@@ -36,7 +44,7 @@ public class OfferRepository {
 	}
 	
 
-	public Offer find(Integer id) throws Exception {
+	public Offer findOffer(Integer id) throws Exception {
 		
 		if (id <= 0) {
 			throw new Exception("Id inválido.");
@@ -46,7 +54,7 @@ public class OfferRepository {
 		
 	}
 	
-	public List<Offer> findByType(Integer type) {
+	public List<Offer> findOfferByType(Integer type) {
 			
 		return em.createQuery("SELECT o FROM Offer o WHERE o.offer_type_id = :type", Offer.class)
 				.setParameter("type", type)

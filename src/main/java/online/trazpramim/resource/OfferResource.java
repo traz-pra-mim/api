@@ -28,7 +28,7 @@ public class OfferResource {
 		
 		List<OfferModel> data = null;
 		try {
-			data = offerService.findByType(type);
+			data = offerService.findALot(type);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -56,7 +56,7 @@ public class OfferResource {
 		
 		List<OfferModel> data = null;
 		try {
-			data = offerService.findAll();
+			data = offerService.findALot(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -69,11 +69,13 @@ public class OfferResource {
 		
 		try {
 			offerService.saveOffer(offer);
+			return Response.created(null).build();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return Response.noContent().build();
 		}	
 		
-		return Response.created(null).build();
+		
 	}
 	
 }
