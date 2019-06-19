@@ -12,7 +12,8 @@ public class OfferModel {
 	private String neighborhood;
 	private String state;
 	private String country;
-	private Integer type;
+	private String type;
+	private String userToken;
 	
 	public OfferModel(Offer offer) {
 		this.title = offer.getTitle();
@@ -67,10 +68,18 @@ public class OfferModel {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public Integer getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(Integer type) {
+	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getUserToken() {
+		return userToken;
+	}
+
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
 	}
 }

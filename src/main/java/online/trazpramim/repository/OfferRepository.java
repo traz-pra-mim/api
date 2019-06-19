@@ -8,8 +8,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
-import online.trazpramim.domain.Address;
 import online.trazpramim.domain.Offer;
+import online.trazpramim.domain.OfferDetails;
+import online.trazpramim.domain.OfferType;
 
 @Stateless
 public class OfferRepository {
@@ -45,5 +46,35 @@ public class OfferRepository {
 		
 	}
 	
+	public List<Offer> findByType(Integer type) {
+			
+		return em.createQuery("SELECT o FROM Offer o WHERE o.offer_type_id = :type", Offer.class)
+				.setParameter("type", type)
+				.getResultList();
+		
+	}
 	
+	public OfferDetails findOfferDetails(Integer id) throws Exception {
+		if (id <= 0) {
+			throw new Exception("Id inválido.");
+		}
+		
+		return (OfferDetails) em.createQuery("SELECT o FROM OfferDetails o WHERE o.id = :id")
+				.setParameter("id", id)
+				.getSingleResult();
+		
+		
+	}
+	
+	public OfferType findOfferType(Integer id) throws Exception {
+		if (id <= 0) {
+			throw new Exception("Id inválido.");
+		}
+		
+		return (OfferType) em.createQuery("SELECT o FROM OfferType o WHERE o.id = :id")
+				.setParameter("id", id)
+				.getSingleResult();
+		
+		
+	}
 }

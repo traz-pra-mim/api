@@ -16,12 +16,38 @@ public class State implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long id;
+	private Integer id;
 	
 	@Column
 	private String state;
 	
 	@Column
-	private Long country_id = 1l;	
+	private Integer country_id = 1;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Integer getCountry_id() {
+		return country_id;
+	}
+
+	public void setCountry_id(Integer country_id) {
+		this.country_id = country_id;
+	}	
+	
+	
 	
 }
