@@ -68,4 +68,23 @@ public class UserService {
 		
 	}
 	
+	public UserDataModel login(UserDataModel userDataModel) throws NoSuchAlgorithmException {
+		
+		String email = userDataModel.getEmail();
+		
+		MessageDigest md5 = MessageDigest.getInstance("MD5");		
+		
+		String password = userDataModel.getPassword();		
+		md5.update(password.getBytes(),0,password.length());		
+		password = (new BigInteger(1,md5.digest()).toString(32));
+		
+		User user =  userRepository.getTokenByEmailAndPass(email, password);
+		
+		UserDataModel token = new UserDataModel();
+		
+		token.setToken(user.getToken());
+		
+		return token; 
+	}
+	
 }

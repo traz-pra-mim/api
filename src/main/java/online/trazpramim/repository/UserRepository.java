@@ -44,6 +44,13 @@ public class UserRepository {
 		return true;
 		
 	}
+
+	public User getTokenByEmailAndPass(String email, String password) {
+		return (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+				.setParameter("email", email)
+				.setParameter("password", password)
+				.getSingleResult();
+	}
 	
 	
 }

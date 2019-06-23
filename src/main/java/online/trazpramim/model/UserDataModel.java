@@ -17,6 +17,7 @@ public class UserDataModel {
 	private String city;
 	private String state;
 	private String country;
+	private String token;
 	
 	public UserDataModel() {}
 
@@ -138,5 +139,13 @@ public class UserDataModel {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 }

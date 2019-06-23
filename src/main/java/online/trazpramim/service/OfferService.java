@@ -68,7 +68,8 @@ public class OfferService {
 	public List<OfferModel> findALot(Integer type) throws Exception {
 		List<Offer> offers = null;
 		if (type == null) {
-			offers = offerRepository.findAllOffer();
+	
+			offers = offerRepository.findAllOffer();				
 		}else {
 			offers  = offerRepository.findOfferByType(type);
 		}

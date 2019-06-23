@@ -1,5 +1,6 @@
 package online.trazpramim.resource;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -48,5 +49,21 @@ public class UserResource {
 		
 		
 	}
+	
+	@Path("/login")
+	@POST
+	public String login(UserDataModel userDataModel) {
+		
+		UserDataModel token = null;
+		try {
+			token = userService.login(userDataModel);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return new Gson().toJson(token);
+	}
+	
 
 }

@@ -33,13 +33,13 @@ public class OfferRepository {
 		return true;
 		
 	}
-	
 	public List<Offer> findAllOffer() {
 				
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 	    CriteriaQuery<Offer> query = builder.createQuery(Offer.class);
 	    query.from(Offer.class);
-	    return em.createQuery(query).getResultList();				
+	   
+	    return (List<Offer>) em.createQuery(query).getResultList();				
 	
 	}
 	
