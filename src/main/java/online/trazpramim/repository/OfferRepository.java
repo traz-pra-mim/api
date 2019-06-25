@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
+import online.trazpramim.domain.Interested;
 import online.trazpramim.domain.Offer;
 import online.trazpramim.domain.OfferDetails;
 import online.trazpramim.domain.OfferType;
@@ -83,6 +84,12 @@ public class OfferRepository {
 				.setParameter("id", id)
 				.getSingleResult();
 		
+	}
+	
+	public boolean saveInterest(Interested interested) {
 		
+		em.persist(interested);
+		
+		return true;
 	}
 }

@@ -14,7 +14,6 @@ public class OfferModel {
 	private String state;
 	private String country;
 	private String type;
-	private String token;
 	private String departure;
 	private String arrival;
 	
@@ -80,15 +79,6 @@ public class OfferModel {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
 	public String getCity() {
 		return city;
 	}

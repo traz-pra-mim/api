@@ -25,6 +25,10 @@ public class UserRepository {
 	    
 	}
 	
+	public User find(Integer id) {
+		return em.find(User.class, id);
+	}
+	
 	public User getNowUser(String token) throws Exception {
 
 		if (token.length() <= 0 || token == null) {

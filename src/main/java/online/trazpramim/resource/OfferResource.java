@@ -12,8 +12,11 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
+import online.trazpramim.model.InterestedModel;
 import online.trazpramim.model.OfferModel;
+import online.trazpramim.model.UserDataModel;
 import online.trazpramim.service.OfferService;
+import online.trazpramim.service.UserService;
 import online.trazpramim.service.util.EmailService;
 
 @Stateless
@@ -25,6 +28,9 @@ public class OfferResource {
 	
 	@EJB
 	EmailService emailService;
+	
+	@EJB
+	UserService userService;
 	
 	@Path("/type/{type}")
 	@GET
@@ -81,7 +87,33 @@ public class OfferResource {
 			return Response.noContent().build();
 		}	
 		
-		
 	}
 	
+	@Path("/interest")
+	@POST
+	public Response saveInterest(InterestedModel interestedModel) {
+		
+		try {
+			offerService.saveInterest(interestedModel);
+			
+			UserDataModel user = userService.findUser(interestedModel.getToken());
+			
+			OfferModel offer = offerService.find(interestedModel.getOffer());
+			
+			String subject = "Traz pra mim - Interesse cadastrado.";
+			
+			String body = "Olá, " + user.getName() + "!\n";
+			body += "Seu interesse na ofertar '" + offer.getTitle() + "' foi cadastrado com sucesso.";
+			body += "\n\nAtt,\nEquipe Traz Pra Mim";
+			
+			String destiny = user.getEmail();
+			
+			emailService.send(destiny, subject, body);
+			
+			return Response.created(null).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.noContent().build();
+		}	
+	}
 }

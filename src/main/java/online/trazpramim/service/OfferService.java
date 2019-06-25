@@ -11,16 +11,23 @@ import javax.ejb.Stateless;
 
 import online.trazpramim.domain.Address;
 import online.trazpramim.domain.Country;
+import online.trazpramim.domain.Interested;
 import online.trazpramim.domain.Offer;
 import online.trazpramim.domain.OfferDetails;
 import online.trazpramim.domain.State;
+import online.trazpramim.domain.User;
+import online.trazpramim.model.InterestedModel;
 import online.trazpramim.model.OfferModel;
 import online.trazpramim.repository.AddressRepository;
 import online.trazpramim.repository.OfferRepository;
+import online.trazpramim.repository.UserRepository;
 
 @Stateless
 public class OfferService {
 
+	@EJB
+	UserRepository userRepository;
+	
 	@EJB
 	OfferRepository offerRepository;
 	
@@ -140,6 +147,36 @@ public class OfferService {
 		offer.setCreated_at(new Date());
 				
 		offerRepository.saveOffer(offer);
+	}
+	
+	public boolean saveInterest(InterestedModel interestedModel) {
+		
+		User user = null;
+		try {
+			user = userRepository.getNowUser(interestedModel.getToken());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		Offer offer = null;
+		try {
+			offer = offerRepository.findOffer(interestedModel.getOffer());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (user == null || offer == null) {
+			return false;
+		}
+		
+		Interested interested = new Interested();
+		
+		interested.setOffer_id(interestedModel.getOffer());
+		interested.setUser_id(user.getId());
+		
+		offerRepository.saveInterest(interested);
+		
+		return true;
 	}
 	
 }

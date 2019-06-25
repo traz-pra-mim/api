@@ -6,12 +6,13 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import online.trazpramim.domain.Address;
+import online.trazpramim.domain.Country;
+import online.trazpramim.domain.State;
 import online.trazpramim.domain.User;
 import online.trazpramim.model.UserDataModel;
 import online.trazpramim.repository.AddressRepository;
@@ -25,10 +26,6 @@ public class UserService {
 	
 	@EJB
 	AddressRepository addressRepository;
-	
-	public List<User> findAll() {
-		return userRepository.findAll();
-	}
 	
 	public void createUser(UserDataModel userDataModel) throws ParseException, NoSuchAlgorithmException {
 		
@@ -85,6 +82,58 @@ public class UserService {
 		token.setToken(user.getToken());
 		
 		return token; 
+	}
+	
+	public UserDataModel findUser(String token) {
+		
+		User user = null;
+		try {
+			 user = userRepository.getNowUser(token);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		UserDataModel userDataModel = new UserDataModel();
+		
+		userDataModel.setEmail(user.getEmail());
+		userDataModel.setName(user.getName());
+		userDataModel.setLast_name(user.getLast_name());
+		userDataModel.setCpf(user.getCpf());
+		userDataModel.setBirthday(user.getBirthday().toString());
+		
+		Address address = new Address();
+		try {
+			address = addressRepository.find(user.getAddress_id());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		userDataModel.setFirst_part(address.getFirst_part());
+		userDataModel.setSecond_part(address.getSecond_part());
+		userDataModel.setPostal_code(address.getPostal_code());
+		userDataModel.setNeighborhood(address.getNeighborhood());
+		userDataModel.setCity(address.getCity());
+		
+		State state = new State();
+		try {
+			state = addressRepository.findState(address.getState_id());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		userDataModel.setState(state.getState());
+		
+		Country country = new Country();
+		try {
+			country = addressRepository.findCountry(state.getCountry_id());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		userDataModel.setCountry(country.getName());
+	
+		
+		return userDataModel;
 	}
 	
 }
