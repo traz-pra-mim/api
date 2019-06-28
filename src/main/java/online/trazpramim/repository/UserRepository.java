@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -50,10 +51,19 @@ public class UserRepository {
 	}
 
 	public User getTokenByEmailAndPass(String email, String password) {
+		/*try {
+		User token = (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+				.setParameter("email", email)
+				.setParameter("password", password)
+				.getSingleResult();
+		}catch(NoResultException nre) {
+			
+		}*/
 		return (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
 				.setParameter("email", email)
 				.setParameter("password", password)
 				.getSingleResult();
+				
 	}
 	
 	
