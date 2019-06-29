@@ -42,6 +42,17 @@ public class UserRepository {
 		
 	}
 	
+	public void deleteUser(String token) throws Exception{
+		if (token.length() <= 0 || token == null) {
+			throw new Exception("Token inválido.");
+		}
+		User duser = (User) em.createQuery("SELECT u FROM User u WHERE u.token = :token")
+				.setParameter("token", token)
+				.getSingleResult();
+		
+		em.remove(duser);
+	}
+	
 	public boolean saveUser(User user) {
 		
 		em.persist(user);

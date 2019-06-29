@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
@@ -59,6 +60,19 @@ public class UserResource {
 		}
 		
 		return new Gson().toJson(token);
+	}
+	
+	@Path("/delete/{token}")
+	@POST
+	public Response delete(@PathParam("token") String token) {
+		
+		try {
+			userService.delUser(token);
+			return Response.ok().build();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return Response.notModified().build();
+		}
 	}
 	
 

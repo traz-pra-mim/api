@@ -65,10 +65,26 @@ public class UserService {
 		
 	}
 	
+	public void delUser(String token) throws ParseException{
+		/*User user = null;
+		
+		String email = userDataModel.getEmail();
+		MessageDigest md5 = MessageDigest.getInstance("MD5");
+		String password = userDataModel.getPassword();		
+		md5.update(password.getBytes(),0,password.length());
+		password = (new BigInteger(1,md5.digest()).toString(32));
+		
+		user = userRepository.getTokenByEmailAndPass(email, password);*/
+		try {
+		userRepository.deleteUser(token);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public UserDataModel login(UserDataModel userDataModel) throws NoSuchAlgorithmException {
 		
 		String email = userDataModel.getEmail();
-		
 		MessageDigest md5 = MessageDigest.getInstance("MD5");		
 		
 		String password = userDataModel.getPassword();		
