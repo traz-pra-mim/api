@@ -11,7 +11,9 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
+import online.trazpramim.model.InterestedModel;
 import online.trazpramim.model.UserDataModel;
+import online.trazpramim.service.OfferService;
 import online.trazpramim.service.UserService;
 
 @Stateless
@@ -20,6 +22,9 @@ public class UserResource {
 	
 	@EJB
 	UserService userService;
+	
+	@EJB
+	OfferService offerService;
 	
 	@Path("/register")
 	@POST
@@ -47,6 +52,14 @@ public class UserResource {
 		
 	}
 	
+	@Path("/authorized")
+	@POST
+	public boolean authorized(InterestedModel interestedModel) {
+		
+		boolean check = offerService.alreadyIsInterested(interestedModel);
+		
+		return check;
+	}
 	
 	@Path("/login")
 	@POST

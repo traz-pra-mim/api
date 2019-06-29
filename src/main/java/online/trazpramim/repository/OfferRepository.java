@@ -92,4 +92,34 @@ public class OfferRepository {
 		
 		return true;
 	}
+	
+	public Interested findInterest(Integer user, Integer offer) throws Exception {
+		try {
+			Interested interested = (Interested) em.createQuery("SELECT o FROM Interested o WHERE o.user_id = :user AND o.offer_id = :offer")
+					.setParameter("user", user)
+					.setParameter("offer", offer)
+					.getSingleResult();	
+			return interested;
+		} catch (Exception e) {
+			throw new Exception("Deu errado");
+		}
+		
+		
+		
+	}
+	
+	public Offer findOfferWithUser(Integer user, Integer offer) throws Exception {
+		try {
+			Offer _offer = (Offer) em.createQuery("SELECT o FROM Offer o WHERE o.user_id = :user AND o.id = :offer")
+					.setParameter("user", user)
+					.setParameter("offer", offer)
+					.getSingleResult();	
+			return _offer;
+		} catch (Exception e) {
+			throw new Exception("Deu errado");
+		}
+		
+		
+		
+	}
 }

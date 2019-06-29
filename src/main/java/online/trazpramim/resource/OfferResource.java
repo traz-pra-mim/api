@@ -63,12 +63,10 @@ public class OfferResource {
 	
 	@GET
 	public String findAll() {
-		
-		emailService.send("igornogueir@gmail.com", "Traz pra mim", "Recebido email.");
-		
+			
 		List<OfferModel> data = null;
 		try {
-			//data = offerService.findALot(null);
+			data = offerService.findALot(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	

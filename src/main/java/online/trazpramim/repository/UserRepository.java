@@ -62,6 +62,17 @@ public class UserRepository {
 	}
 
 	public User getTokenByEmailAndPass(String email, String password) {
+<<<<<<< HEAD
+		try {
+			return (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+					.setParameter("email", email)
+					.setParameter("password", password)
+					.getSingleResult();	
+		} catch (Exception e) {
+			return null;
+		}
+		
+=======
 		/*try {
 		User token = (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
 				.setParameter("email", email)
@@ -75,7 +86,9 @@ public class UserRepository {
 				.setParameter("password", password)
 				.getSingleResult();
 				
+>>>>>>> 5571997101f528816581a4ac547ee5898690babf
 	}
+	
 	
 	
 }

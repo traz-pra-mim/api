@@ -92,12 +92,15 @@ public class UserService {
 		password = (new BigInteger(1,md5.digest()).toString(32));
 		
 		User user =  userRepository.getTokenByEmailAndPass(email, password);
-		
+		if (user == null) {
+			return null;
+			
+		}
 		UserDataModel token = new UserDataModel();
 		
 		token.setToken(user.getToken());
 		
-		return token; 
+		return token;
 	}
 	
 	public UserDataModel findUser(String token) {

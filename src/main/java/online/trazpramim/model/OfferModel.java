@@ -16,6 +16,7 @@ public class OfferModel {
 	private String type;
 	private String departure;
 	private String arrival;
+	private String user;
 	
 	
 	public OfferModel() {}
@@ -101,6 +102,14 @@ public class OfferModel {
 
 	public void setArrival(String arrival) {
 		this.arrival = arrival;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	

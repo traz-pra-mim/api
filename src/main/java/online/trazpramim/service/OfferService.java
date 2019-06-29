@@ -52,6 +52,7 @@ public class OfferService {
 		Address address = addressRepository.find(offer.getAddress_id());
 		
 		offerModel.setNeighborhood(address.getNeighborhood());
+		offerModel.setCity(address.getCity());
 		
 		State state = addressRepository.findState(address.getState_id());
 		
@@ -65,9 +66,18 @@ public class OfferService {
 		
 		offerModel.setPrice(offerDetails.getMax_price());
 		offerModel.setWeight(offerDetails.getMax_weight());
+		offerModel.setArrival(offerDetails.getArrival_day().toString());
+		offerModel.setDeparture(offerDetails.getDeparture_day().toString());
 	
 		offerModel.setType(offerRepository.findOfferType(offer.getOffer_type_id()).getName());		
-
+		
+		if (offer.getUser_id() != null) { 
+			User user = userRepository.find(offer.getUser_id());
+			
+			offerModel.setUser(user.getName());		
+		}
+		
+	
 			
 		return offerModel;		
 	}
@@ -86,7 +96,9 @@ public class OfferService {
 		
 		for (Offer offer:  offers) {
 			OfferModel offerModel = new OfferModel(offer);
-					
+			
+			offerModel.setId(offer.getId());
+			
 			Address address = addressRepository.find(offer.getAddress_id());
 			
 			offerModel.setNeighborhood(address.getNeighborhood());
@@ -145,7 +157,15 @@ public class OfferService {
 		offer.setOffer_details_id(offerDetails.getId());			
 		
 		offer.setCreated_at(new Date());
-				
+
+		try {
+			User user = userRepository.getNowUser(offerModel.getUser());
+			
+			offer.setUser_id(user.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		offerRepository.saveOffer(offer);
 	}
 	
@@ -177,6 +197,23 @@ public class OfferService {
 		offerRepository.saveInterest(interested);
 		
 		return true;
+	}
+	
+	public boolean alreadyIsInterested(InterestedModel interestedModel) {
+		
+		try {
+			User user = userRepository.getNowUser(interestedModel.getToken());
+			
+			offerRepository.findInterest(user.getId(), interestedModel.getOffer());
+			offerRepository.findOfferWithUser(user.getId(), interestedModel.getOffer());			
+			
+			return true;	
+		} catch (Exception e) {
+			return false;
+		}
+		
+		
+		
 	}
 	
 }
