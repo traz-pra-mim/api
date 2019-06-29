@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -41,6 +42,17 @@ public class UserRepository {
 		
 	}
 	
+	public void deleteUser(String token) throws Exception{
+		if (token.length() <= 0 || token == null) {
+			throw new Exception("Token inválido.");
+		}
+		User duser = (User) em.createQuery("SELECT u FROM User u WHERE u.token = :token")
+				.setParameter("token", token)
+				.getSingleResult();
+		
+		em.remove(duser);
+	}
+	
 	public boolean saveUser(User user) {
 		
 		em.persist(user);
@@ -50,6 +62,7 @@ public class UserRepository {
 	}
 
 	public User getTokenByEmailAndPass(String email, String password) {
+<<<<<<< HEAD
 		try {
 			return (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
 					.setParameter("email", email)
@@ -59,6 +72,21 @@ public class UserRepository {
 			return null;
 		}
 		
+=======
+		/*try {
+		User token = (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+				.setParameter("email", email)
+				.setParameter("password", password)
+				.getSingleResult();
+		}catch(NoResultException nre) {
+			
+		}*/
+		return (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+				.setParameter("email", email)
+				.setParameter("password", password)
+				.getSingleResult();
+				
+>>>>>>> 5571997101f528816581a4ac547ee5898690babf
 	}
 	
 	

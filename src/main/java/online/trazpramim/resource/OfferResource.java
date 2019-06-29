@@ -98,7 +98,7 @@ public class OfferResource {
 			
 			OfferModel offer = offerService.find(interestedModel.getOffer());
 			
-			/*String subject = "Traz pra mim - Interesse cadastrado.";
+			String subject = "Traz pra mim - Interesse cadastrado.";
 			
 			String body = "Olá, " + user.getName() + "!\n";
 			body += "Seu interesse na ofertar '" + offer.getTitle() + "' foi cadastrado com sucesso.";
@@ -107,7 +107,7 @@ public class OfferResource {
 			String destiny = user.getEmail();
 			
 			emailService.send(destiny, subject, body);
-			*/
+			
 			return Response.created(null).build();
 		} catch (Exception e) {
 			e.printStackTrace();
